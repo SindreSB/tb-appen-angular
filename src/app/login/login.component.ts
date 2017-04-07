@@ -1,4 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+
+enum OnboardState {
+    NotAuthenticated,
+    AuthenticatedCheckingRoom,
+    AuthenticatedFirstTime,
+    AuthenticationComplete,
+    Authenticated
+}
 
 @Component({
   selector: 'tb-login',
@@ -7,9 +17,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  public roomNumber: number;
+    public movedInDate: Date;
 
-  ngOnInit() {
-  }
+    private onboardingState: OnboardState;
+
+    constructor(public auth: AuthService, public router: Router) { }
+
+    ngOnInit() {
+        this.onboardingState = OnboardState.NotAuthenticated;
+    }
+
+    shouldShow(state: number): boolean {
+            return this.onboardingState === state;
+    }
+
+    isRoomnumberSet(): boolean {
+        if (localStorage.getItem('roomnumber')) {
+            return true;
+        }
+        return false;
+    }
+
+    registerRental() {
+
+    }
+
+    continueToApp() {
+    }
 
 }

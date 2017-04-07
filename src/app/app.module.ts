@@ -16,7 +16,9 @@ import { PointsHighscoreComponent } from './points-highscore/points-highscore.co
 import { WashlistInputComponent } from './washlist-input/washlist-input.component';
 import { ApiService } from './services/api.service';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './services/auth.service';
 
+import 'auth0-lock';
 import 'hammerjs';
 
 @NgModule({
@@ -39,7 +41,7 @@ import 'hammerjs';
     FlexLayoutModule,
     MaterialModule
   ],
-  providers: [ApiService],
+  providers: [ApiService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,37 @@
-<p>
-  login works!
-</p>
+<div class="center-div">
+    <!--Show this if user not authenticated - enum value 0-->
+    <div class="content-div" [hidden]="!shouldShow(0)">
+        <img class="image-logo" src="assets/images/tb-logo.png" />
+        <h2>Teknobyenappen</h2>
+        <p>For å kunne bruke appen må <br/>du logge inn med Facebook</p>
+        <button md-raised-button align="center" (click)="auth.login()">Login</button>
+    </div>
+    <!--Show this while checking if room is registered - enum value 1-->
+    <div class="content-div" [hidden]="!shouldShow(1)">
+        <h2>Vent litt mens vi sjekker om du har brukt appen før...</h2>
+        <div>
+            <span class="flex"></span>
+            <md-spinner class="inner"></md-spinner>
+            <span class="flex"></span>
+        </div>       
+        
+    </div>
+    <!--Show this if roomnumber isn't registered - enum value 2-->
+    <div class="content-div" [hidden]="!shouldShow(2)">
+        <h2>Velkommen!</h2>
+        <p>Nå gjennstår det bare å registrere <br/> romnummeret ditt og når du flyttet inn:</p>
+        <md-input-container>
+            <input mdInput  [(ngModel)]="roomNumber" type="number" placeholder="Romnummer"/>
+        </md-input-container> <br/>
+        <md-input-container>
+            <input mdInput  [(ngModel)]="movedInDate" type="date" placeholder="Innflytningsdato"/>
+        </md-input-container>
+        <br/>
+        <button md-raised-button (click)="registerRental()" >Registrer</button>
+    </div>
+    <!--Show this if auth/onboarding complete - enum value 3-->
+    <div class="content-div" [hidden]="!shouldShow(3)">
+        <h2>Velkommen!</h2>        
+        <button md-raised-button (click)="continueToApp()" >Neste</button>
+    </div>
+</div>
