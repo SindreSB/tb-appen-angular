@@ -1,0 +1,29 @@
+.toolbar {
+    height: 58px;
+}
+
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+.example-container {
+    height: calc(100% - 58px);
+}
+
+@media screen and (min-width: 600px) {
+    .example-container {
+        height: calc(100% - 64px);
+    }
+}
+
+.example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.example-sidenav {
+    padding: 20px;
+    width: 200px;
+}

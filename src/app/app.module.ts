@@ -17,6 +17,7 @@ import { WashlistInputComponent } from './washlist-input/washlist-input.componen
 import { ApiService } from './services/api.service';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import 'auth0-lock';
 import 'hammerjs';
@@ -39,7 +40,8 @@ import 'hammerjs';
     HttpModule,
     AppRoutingModule,
     FlexLayoutModule,
-    MaterialModule
+    MaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [ApiService, AuthService],
   bootstrap: [AppComponent]

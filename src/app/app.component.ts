@@ -10,4 +10,8 @@ export class AppComponent {
   title = 'tb works!';
 
   constructor(public auth: AuthService) { }
+
+  openFeedbackDialog() {
+    console.log('Not implemented yet');
+  }
 }
