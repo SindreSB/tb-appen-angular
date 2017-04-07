@@ -17,10 +17,12 @@ import { WashlistInputComponent } from './washlist-input/washlist-input.componen
 import { ApiService } from './services/api.service';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import 'auth0-lock';
 import 'hammerjs';
+import { WashlistOverviewComponent } from './washlist-overview/washlist-overview.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import 'hammerjs';
     WashlistDisplayComponent,
     PointsHighscoreComponent,
     WashlistInputComponent,
-    LoginComponent
+    LoginComponent,
+    WashlistOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,7 @@ import 'hammerjs';
     MaterialModule,
     BrowserAnimationsModule
   ],
-  providers: [ApiService, AuthService],
+  providers: [ApiService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,20 +10,27 @@
     height: calc(100% - 58px);
 }
 
+.example-sidenav-content {
+    display: flex;
+    height: 100%;
+    /*align-items: center;
+    justify-content: center;*/
+}
+
+.example-sidenav {
+    width: 200px;
+}
+
+.nav-label {
+    margin-left: 10px;
+}
+
 @media screen and (min-width: 600px) {
     .example-container {
         height: calc(100% - 64px);
     }
-}
 
-.example-sidenav-content {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-}
-
-.example-sidenav {
-    padding: 20px;
-    width: 200px;
+    .example-sidenav {
+        width: 340px;
+    }
 }
