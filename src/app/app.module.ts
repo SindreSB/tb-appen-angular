@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpModule } from '@angular/http';
+import { MaterialModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +17,7 @@ import { WashlistInputComponent } from './washlist-input/washlist-input.componen
 import { ApiService } from './services/api.service';
 import { LoginComponent } from './login/login.component';
 
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FlexLayoutModule,
+    MaterialModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
