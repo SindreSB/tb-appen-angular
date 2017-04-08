@@ -1,3 +1,34 @@
-<p>
-  washlist-input works!
-</p>
+<md-card>
+  <md-card-title align="center">
+    Lag vaskeliste
+  </md-card-title>
+  <md-card-content align="center">
+    <div #dateRow>
+      <md-input-container #fromDateContainer>
+        <input mdInput [ngModel]="value.startDate | date:'yyyy-MM-dd'" (ngModelChange)="updateStartdate($event)" type="date" placeholder="Fra dato:">
+      </md-input-container>
+      <md-input-container #toDateContainer>
+        <input mdInput [ngModel]="value.endDate | date:'yyyy-MM-dd'" (ngModelChange)="updateEnddate($event)" type="date" placeholder="Til dato:">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput ([ngModel])="value.beginWithRoom.roomNumber" type="number" placeholder="Begyn med rom:" value="201">
+      </md-input-container>
+    </div>
+    <div>
+      <md-slide-toggle (change)="showAdvancedToggled($event)">Avansert</md-slide-toggle>
+    </div>
+    <div *ngIf="showAdvanced">
+      <md-input-container>
+      <input mdInput type="text" placeholder="Straffevasker:" value="">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput type="text" placeholder="Fritak for vask:" value="">
+    </md-input-container>
+    </div>
+    <button md-raised-button (click)="onGenerateClicked()">Generer</button>
+    
+  </md-card-content>
+</md-card>
+
+
+

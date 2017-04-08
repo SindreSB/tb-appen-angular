@@ -1,0 +1,15 @@
+:host {
+    height: 300px;
+    width: 250px;
+    align-content: center;
+    text-align: center;
+}
+
+textarea {
+    height: 150px;
+    width: 200px;
+}
+
+.flex {
+    flex: 1 1 auto;
+}

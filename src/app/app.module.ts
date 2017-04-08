@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpModule } from '@angular/http';
+import { HttpModule, RequestOptions, Http } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +24,15 @@ import 'auth0-lock';
 import 'hammerjs';
 import { WashlistOverviewComponent } from './washlist-overview/washlist-overview.component';
 import { NextWashdayComponent } from './next-washday/next-washday.component';
+
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
+
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+  return new AuthHttp(new AuthConfig({
+      globalHeaders: [{'Content-Type': 'application/json'}],
+    }), http, options);
+}
+
 
 @NgModule({
   declarations: [
@@ -48,7 +57,17 @@ import { NextWashdayComponent } from './next-washday/next-washday.component';
     MaterialModule,
     BrowserAnimationsModule
   ],
-  providers: [ApiService, AuthService, AuthGuardService],
-  bootstrap: [AppComponent]
+  providers: [
+    ApiService,
+    AuthService,
+    {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions]
+    },
+    AuthGuardService
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [FeedbackComponent]
 })
 export class AppModule { }

@@ -1,0 +1,15 @@
+:host {
+    padding: 10px;
+}
+
+#fromDateContainer {
+    width: 50%;
+}
+
+ #toDateContainer {
+     width: 50%;
+ }
+
+ md-card-header {
+     text-align: center;
+ }

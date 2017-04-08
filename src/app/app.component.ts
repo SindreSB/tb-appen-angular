@@ -14,7 +14,6 @@ export class AppComponent {
   constructor(public auth: AuthService, public dialog: MdDialog) { }
 
   openFeedbackDialog() {
-    console.log('Not implemented yet');
     this.dialog.open(FeedbackComponent);
   }
 }
