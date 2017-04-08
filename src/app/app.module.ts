@@ -23,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'auth0-lock';
 import 'hammerjs';
 import { WashlistOverviewComponent } from './washlist-overview/washlist-overview.component';
+import { NextWashdayComponent } from './next-washday/next-washday.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { WashlistOverviewComponent } from './washlist-overview/washlist-overview
     PointsHighscoreComponent,
     WashlistInputComponent,
     LoginComponent,
-    WashlistOverviewComponent
+    WashlistOverviewComponent,
+    NextWashdayComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,12 @@
-<p>
-  feedback works!
-</p>
+<div md-dialog-title>
+    Tilbakemelding
+</div>
+
+<md-dialog-content>
+    <textarea placeholder="Enter feedback" [(ngModel)]="feedbackText" ></textarea>
+    <!-- Anonymus toggle here  -->
+</md-dialog-content>
+<md-dialog-actions layout-align="center">
+    <button md-raised-button md-dialog-close (click)="sendFeedback()">Send</button>
+    <button md-raised-button md-dialog-close>Avbryt</button>
+</md-dialog-actions>

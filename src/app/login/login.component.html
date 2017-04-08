@@ -1,6 +1,6 @@
 <div class="center-div">
     <!--Show this if user not authenticated - enum value 0-->
-    <div class="content-div" [hidden]="!shouldShow(0)">
+    <div class="content-div" *ngIf="!auth.authenticated()">
         <img class="image-logo" src="assets/images/tb-logo.png" />
         <h2>Teknobyenappen</h2>
         <p>For å kunne bruke appen må <br/>du logge inn med Facebook</p>
@@ -30,7 +30,7 @@
         <button md-raised-button (click)="registerRental()" >Registrer</button>
     </div>
     <!--Show this if auth/onboarding complete - enum value 3-->
-    <div class="content-div" [hidden]="!shouldShow(3)">
+    <div class="content-div" *ngIf="auth.authenticated()">
         <h2>Velkommen!</h2>        
         <button md-raised-button (click)="continueToApp()" >Neste</button>
     </div>

@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
     }
 
     continueToApp() {
+        this.router.navigateByUrl("/");
     }
 
 }

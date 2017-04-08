@@ -20,7 +20,11 @@ export class AuthService {
       localStorage.setItem('name', authResult.idTokenPayload.name);
       localStorage.setItem('picture', authResult.idTokenPayload.picture);
       localStorage.setItem('roles', authResult.idTokenPayload.roles);
-      window.open(location.origin, '_self');
+      if(this.authenticated()){
+        console.log("Was about to navigate to origin");
+        console.log(localStorage);
+        //window.open(location.origin, '_top');
+      }
     });
    }
 

@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedbackComponent implements OnInit {
 
+  feedbackText: string;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  sendFeedback() {
+    console.log('Feedback \"sent\"');
   }
 
 }
