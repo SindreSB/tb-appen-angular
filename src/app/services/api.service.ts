@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
-import { IGenerateWashlistParams, WashdayAssignment } from '../shared/models';
+import {
+    IGenerateWashlistParams,
+    WashdayAssignment,
+    HighscoreResult
+} from '../shared/models';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { API_ENDPOINT } from '../settings';
 import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class ApiService {
 
-  public washlist: Subject<any> = new Subject();
+  public washlist: ReplaySubject<any> = new ReplaySubject(1);
+  public highscoreResult: ReplaySubject<any> = new ReplaySubject(1);
 
   constructor(private authHttp: AuthHttp) { }
 
@@ -24,5 +29,17 @@ export class ApiService {
             }
             );
         return this.washlist;
+    }
+
+
+    public getTopFive(): Observable<any> {
+        const apiEndpoint = 'KitchenPoints/HighscoreThisWeek/5';
+        this.authHttp.get(API_ENDPOINT + apiEndpoint)
+            .subscribe(res => {
+                const highscoreResponse = <HighscoreResult>res.json();
+                this.highscoreResult.next(highscoreResponse.highscore);
+            },
+            error => console.log(error));
+        return this.highscoreResult;
     }
 }

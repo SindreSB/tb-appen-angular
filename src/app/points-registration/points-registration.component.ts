@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PointsRegistrationComponent implements OnInit {
 
+  points: number;
+
   constructor() { }
 
   ngOnInit() {

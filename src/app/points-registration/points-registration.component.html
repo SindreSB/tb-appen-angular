@@ -1,3 +1,19 @@
-<p>
-  points-registration works!
-</p>
+<md-card class="points-card">
+  <md-card-title align="center">
+    Dine poeng: {{ points }}
+  </md-card-title>
+  <md-card-content align="center">
+    Du kan få poeng hver gang du bidrar til å tømme en oppvaskmaskin eller tømmer søppel. Klikk på en av knappene nedenfor for å registrere poengene dine! 
+  <br><br>
+    Hva har du tømt?
+  </md-card-content>
+  <md-card-actions class="actions" align="center">
+    <button md-raised-button>
+      Maskinen!
+    </button>
+    <span class="spacer"></span>
+    <button md-raised-button>
+      Søppelet!
+    </button>
+  </md-card-actions>
+</md-card>

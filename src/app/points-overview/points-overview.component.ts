@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HighscoreResult } from '../shared/models';
 
 @Component({
   selector: 'tb-points-overview',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./points-overview.component.css']
 })
 export class PointsOverviewComponent implements OnInit {
+
+  highscore: HighscoreResult[];
 
   constructor() { }
 
