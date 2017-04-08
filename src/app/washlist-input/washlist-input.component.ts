@@ -35,7 +35,7 @@ export class WashlistInputComponent implements OnInit {
 
   onGenerateClicked() {
     // Gather up the values and...
-    //console.log(this.value);
+    // console.log(this.value);
     // Emit!
     this.onGenerate.emit(this.value);
   }
@@ -46,6 +46,10 @@ export class WashlistInputComponent implements OnInit {
 
   updateEnddate(event) {
     this.value.endDate = new Date(event);
+  }
+
+  updateRoomnumber(event) {
+    this.value.beginWithRoom = {roomNumber: event};
   }
 
 }

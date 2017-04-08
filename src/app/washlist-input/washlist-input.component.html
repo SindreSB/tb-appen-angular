@@ -11,7 +11,7 @@
         <input mdInput [ngModel]="value.endDate | date:'yyyy-MM-dd'" (ngModelChange)="updateEnddate($event)" type="date" placeholder="Til dato:">
       </md-input-container>
       <md-input-container>
-        <input mdInput ([ngModel])="value.beginWithRoom.roomNumber" type="number" placeholder="Begyn med rom:" value="201">
+        <input mdInput [ngModel]="value.beginWithRoom.roomNumber" (ngModelChange)="updateRoomnumber($event)" type="number" placeholder="Begyn med rom:">
       </md-input-container>
     </div>
     <div>
