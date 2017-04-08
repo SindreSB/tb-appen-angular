@@ -1,2 +1,2 @@
 <tb-washlist-input (onGenerate)="generateWashlist($event)"></tb-washlist-input>
-<tb-washlist-display [washlist]="washlist"></tb-washlist-display>
+<tb-washlist-display *ngIf="cleaningList" [cleaningList]="cleaningList"></tb-washlist-display>

@@ -10,6 +10,11 @@ export class Week {
         this.firstDayOfWeek = getFirstDayOfWeek(dateInWeek);
         this.weeknumber = getWeekNumber(this.firstDayOfWeek);
         this.year = this.firstDayOfWeek.getFullYear();
+        console.log('------------------');
+        console.log(this.firstDayOfWeek);
+        console.log(this.weeknumber);
+        console.log(this.year);
+        console.log('------------------');
     }
 
     /**

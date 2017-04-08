@@ -13,10 +13,10 @@ export class CleaningAssignments {
         this.taskOne = assignments.find(assignment => assignment.assignment === Task.ONE);
         this.taskTwo = assignments.find(assignment => assignment.assignment === Task.TWO);
 
-        if (this.taskOne === null) {
+        if (this.taskOne === undefined) {
             this.taskOne = new WashdayAssignment();
         }
-        if (this.taskTwo === null) {
+        if (this.taskTwo === undefined) {
             this.taskTwo = new WashdayAssignment();
         }
     }

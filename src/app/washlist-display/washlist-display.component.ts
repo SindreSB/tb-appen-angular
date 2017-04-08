@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { WashdayAssignment } from '../shared/models';
+import { CleaningList } from '../shared/washlist/cleaning-list';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { WashdayAssignment } from '../shared/models';
 })
 export class WashlistDisplayComponent implements OnInit {
 
-  @Input() washlist: WashdayAssignment[];
+  @Input() cleaningList: CleaningList;
 
   @Input() enablePrint = false;
 
