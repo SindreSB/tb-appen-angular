@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { WashdayAssignment } from '../shared/models';
 import { CleaningList } from '../shared/washlist/cleaning-list';
+import { Observable } from 'rxjs/observable';
 
 @Component({
   selector: 'tb-washlist-generator',
@@ -10,7 +11,8 @@ import { CleaningList } from '../shared/washlist/cleaning-list';
 })
 export class WashlistGeneratorComponent implements OnInit {
 
-  cleaningList: CleaningList;
+  asyncCleaningList: Observable<CleaningList>;
+
   washlist: WashdayAssignment[];
 
   constructor(private apiService: ApiService) { }
@@ -19,13 +21,6 @@ export class WashlistGeneratorComponent implements OnInit {
   }
 
   generateWashlist(params) {
-    this.apiService.generateWashlist(params).subscribe(result => {
-      this.washlist = result;
-      this.cleaningList = new CleaningList(this.washlist);
-      console.log(this.cleaningList);
-    }, error => {
-      // TODO: Surface error as toast
-    });
+    this.asyncCleaningList = this.apiService.generateWashlist(params).map(value => new CleaningList(value));
   }
-
 }

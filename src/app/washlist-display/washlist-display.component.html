@@ -7,19 +7,19 @@
             <div *ngFor="let cleaningWeek of cleaningList.getCleaningLists()">
                 <h3>Week {{ cleaningWeek.weeknumber }} - {{ cleaningWeek.firstDayOfWeek | date }}</h3>
                 <table class="washlist-table" align="center">
-                <thead>
+                <tbody>
                     <tr>
-                        <td class="date-column"><h4>Dag</h4></td>
-                        <td class="date-column"><h4>Oppgave 1</h4></td>
-                        <td class="date-column"><h4>Oppgave 2</h4></td>
+                        <td class="date-column"><h4>Oppgave</h4></td>
+                        <td class="date-column"><h4>1</h4></td>
+                        <td class="date-column"><h4>2</h4></td>
                     </tr>
-                </thead>
-            <tbody>
-                <tr *ngFor="let item of cleaningWeek.getAssignments(); let i = index">
-                    <td>{{item.taskOne.date | date:'EEE'}}</td>
-                    <td>{{item.taskOne.roomNumber}}</td>
-                    <td>{{item.taskTwo.roomNumber}}</td>
-                </tr>
+                </tbody>
+                <tbody *ngFor="let item of cleaningWeek.getAssignments(); let i = index">
+                    <tr *ngIf="item.taskOne.date">
+                        <td>{{item.taskOne.date | date:'EEE'}}</td>
+                        <td>{{item.taskOne.roomNumber}}</td>
+                        <td>{{item.taskTwo.roomNumber}}</td>
+                    </tr>
                 </tbody>
             </table>
             </div>
