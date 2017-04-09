@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
 import { AUTH_DOMAIN, AUTH_CLIENT_ID } from '../settings';
-import { Router } from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
 
 declare var Auth0Lock: any;
 
@@ -12,7 +12,7 @@ export class AuthService {
     params: {scope: 'openid name picture roles'},
   }});
 
-  constructor(private router: Router) {
+  /*constructor(private router: Router) {
     // Add callback for lock `authenticated` event
     this.lock.on('authenticated', (authResult) => {
       console.log(authResult);
@@ -26,7 +26,28 @@ export class AuthService {
         //window.open(location.origin, '_top');
       }
     });
-   }
+   }*/
+   constructor(public router: Router) {
+      this
+        .router
+        .events
+        .filter(event => event instanceof NavigationStart)
+        .filter((event: NavigationStart) => (/access_token|id_token|error/).test(event.url))
+        .subscribe(() => {
+          this.lock.resumeAuth(window.location.hash, (error, authResult) => {
+            if (error) { return console.log(error); }
+            this.saveAuthResult(authResult);
+            this.router.navigate(['/']);
+          });
+      });
+  }
+
+  saveAuthResult(authResult) {
+    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('name', authResult.idTokenPayload.name);
+    localStorage.setItem('picture', authResult.idTokenPayload.picture);
+    localStorage.setItem('roles', authResult.idTokenPayload.roles);
+  }
 
    public login() {
     // Call the show method to display the widget.
