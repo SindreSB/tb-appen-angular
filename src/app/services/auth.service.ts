@@ -12,21 +12,6 @@ export class AuthService {
     params: {scope: 'openid name picture roles'},
   }});
 
-  /*constructor(private router: Router) {
-    // Add callback for lock `authenticated` event
-    this.lock.on('authenticated', (authResult) => {
-      console.log(authResult);
-      localStorage.setItem('id_token', authResult.idToken);
-      localStorage.setItem('name', authResult.idTokenPayload.name);
-      localStorage.setItem('picture', authResult.idTokenPayload.picture);
-      localStorage.setItem('roles', authResult.idTokenPayload.roles);
-      if(this.authenticated()){
-        console.log("Was about to navigate to origin");
-        console.log(localStorage);
-        //window.open(location.origin, '_top');
-      }
-    });
-   }*/
    constructor(public router: Router) {
       this
         .router
@@ -72,5 +57,17 @@ export class AuthService {
     localStorage.removeItem('roles');
     this.router.navigateByUrl('/login');
     location.reload(true);
+  }
+
+  public isAdmin(): boolean {
+    return this.hasRole('admin');
+  }
+
+  public isBbu(): boolean {
+    return this.hasRole('bbu');
+  }
+
+  public hasRole(role: string): boolean {
+    return localStorage.getItem('roles').includes(role);
   }
 }
