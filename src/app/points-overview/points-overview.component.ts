@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IHighscoreResult } from '../shared/models';
+import { IHighscoreEntry } from '../shared/models';
 import { ApiService } from '../services/api.service';
 import { Observable } from 'rxjs/Observable';
 
@@ -11,12 +11,13 @@ import { Observable } from 'rxjs/Observable';
 export class PointsOverviewComponent implements OnInit {
 
   points: Observable<number>;
-  highscore: IHighscoreResult[];
+  highscore: Observable<IHighscoreEntry[]>;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     this.points = this.apiService.getPointsForUser();
+    this.highscore = this.apiService.getTopFive();
   }
 
   registerPoint(event) {
