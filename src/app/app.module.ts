@@ -26,6 +26,8 @@ import { WashlistOverviewComponent } from './washlist-overview/washlist-overview
 import { NextWashdayComponent } from './next-washday/next-washday.component';
 
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { SettingsComponent } from './settings/settings.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -46,7 +48,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     WashlistInputComponent,
     LoginComponent,
     WashlistOverviewComponent,
-    NextWashdayComponent
+    NextWashdayComponent,
+    SettingsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

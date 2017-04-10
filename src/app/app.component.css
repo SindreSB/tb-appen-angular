@@ -21,6 +21,31 @@
     margin-left: 10px;
 }
 
+.vertical-spacer {
+    flex: 1 1 auto;
+    flex-direction: column;
+}
+
+.profile-section {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+}
+
+.img-circle {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+}
+
+.nav-label {
+    overflow-x: hidden;
+}
+
+.toolbar-appname {
+    padding-right: 30px;
+}
+
 @media screen and (min-width: 600px) {
     .example-container {
         height: calc(100% - 64px);

@@ -17,7 +17,6 @@ export class WashlistInputComponent implements OnInit {
 
   constructor() {
     if (this.value === null || this.value === undefined) {
-      console.log(this.value);
       this.value = new GenerateWashlistParams();
       this.value.startDate = new Date();
       this.value.endDate = new Date();

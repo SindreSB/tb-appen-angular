@@ -80,6 +80,10 @@ export class AuthService {
     return localStorage.getItem('name');
   }
 
+  public getImage(): string {
+    return localStorage.getItem('picture');
+  }
+
   public setRoomnumber(roomnumber: number): void {
     localStorage.setItem('roomnumber', roomnumber.toString());
   }

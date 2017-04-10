@@ -4,6 +4,10 @@ import { WashlistGeneratorComponent } from './washlist-generator/washlist-genera
 import { WashlistOverviewComponent } from './washlist-overview/washlist-overview.component';
 import { LoginComponent } from './login/login.component';
 import { PointsOverviewComponent } from './points-overview/points-overview.component';
+import { SettingsComponent } from './settings/settings.component';
+import { ProfileComponent } from './profile/profile.component';
+
+
 import { AuthGuardService } from './services/auth-guard.service';
 
 
@@ -12,6 +16,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'loggedin', pathMatch: 'full', redirectTo: '', canActivate: [AuthGuardService] },
   { path: 'washlist', component: WashlistOverviewComponent, canActivate: [AuthGuardService] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuardService] },
   { path: 'washlist/generate', component: WashlistGeneratorComponent, canActivate: [AuthGuardService] }
 ];
 
