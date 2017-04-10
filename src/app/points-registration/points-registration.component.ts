@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'tb-points-registration',
@@ -7,11 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PointsRegistrationComponent implements OnInit {
 
-  points: number;
+  @Input() points: number;
+  @Output() pointRegistered: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  registerPoint(action) {
+    this.pointRegistered.emit(action);
+  }
 }

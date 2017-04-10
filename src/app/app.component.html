@@ -1,4 +1,4 @@
-<md-toolbar *ngIf="auth.authenticated()"  color="primary" class="toolbar">
+<md-toolbar *ngIf="auth.authenticated() && auth.isRoomnumberSet()"  color="primary" class="toolbar">
   <a class="navbar-brand" (click)="sidenav.toggle()"><img height="30" width="30" src="/assets/images/tb-logo.png"/></a>
       <span class="fill-remaining-space"></span>  
       <h2 >Teknobyen</h2>
@@ -31,6 +31,12 @@
           <span class="spacer"></span>
           <h4 class="nav-label">Vaskeri</h4>
         </a>
+        <span class="vertical-spacer"></span>
+        <div class="profile-section">
+          <md-divider></md-divider>
+          <p>Name of user</p>
+        </div>
+        
       </md-nav-list>
   </md-sidenav>
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HighscoreResult } from '../shared/models';
+import { IHighscoreResult } from '../shared/models';
 
 @Component({
   selector: 'tb-points-highscore',
@@ -8,7 +8,7 @@ import { HighscoreResult } from '../shared/models';
 })
 export class PointsHighscoreComponent implements OnInit {
 
-  @Input() highscore: HighscoreResult[];
+  @Input() highscore: IHighscoreResult[];
 
   constructor() { }
 

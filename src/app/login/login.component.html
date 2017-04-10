@@ -6,32 +6,22 @@
         <p>For å kunne bruke appen må <br/>du logge inn med Facebook</p>
         <button md-raised-button align="center" (click)="auth.login()">Login</button>
     </div>
-    <!--Show this while checking if room is registered - enum value 1-->
-    <div class="content-div" [hidden]="!shouldShow(1)">
-        <h2>Vent litt mens vi sjekker om du har brukt appen før...</h2>
-        <div>
-            <span class="flex"></span>
-            <md-spinner class="inner"></md-spinner>
-            <span class="flex"></span>
-        </div>       
-        
-    </div>
-    <!--Show this if roomnumber isn't registered - enum value 2-->
-    <div class="content-div" [hidden]="!shouldShow(2)">
-        <h2>Velkommen!</h2>
-        <p>Nå gjennstår det bare å registrere <br/> romnummeret ditt og når du flyttet inn:</p>
+
+    <!--Show this if auth ok, no roomnumber-->
+    <div class="content-div" *ngIf="showRoomRegistration()">
+        <h3>Velkommen {{ auth.getName().split(' ')[0] }}</h3>
+        <p>Før du kan bruke appen må du registrere romnummeret ditt.</p>
         <md-input-container>
-            <input mdInput  [(ngModel)]="roomNumber" type="number" placeholder="Romnummer"/>
-        </md-input-container> <br/>
-        <md-input-container>
-            <input mdInput  [(ngModel)]="movedInDate" type="date" placeholder="Innflytningsdato"/>
+            <input mdInput #roomnumberInput type="number" placeholder="Romnummer" required>
         </md-input-container>
-        <br/>
-        <button md-raised-button (click)="registerRental()" >Registrer</button>
+        <div>
+            <button md-raised-button (click)="registerRoomnumber(roomnumberInput.value)" >Registrer</button>
+        </div>  
     </div>
-    <!--Show this if auth/onboarding complete - enum value 3-->
-    <div class="content-div" *ngIf="auth.authenticated()">
-        <h2>Velkommen!</h2>        
-        <button md-raised-button (click)="continueToApp()" >Neste</button>
+
+    <!--Show this while checking for roonmumber-->
+    <div class="content-div" *ngIf="waitingForServerReply">
+        <md-spinner align="center"></md-spinner>
     </div>
+
 </div>

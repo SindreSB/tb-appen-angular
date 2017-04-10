@@ -8,11 +8,11 @@
     Hva har du tømt?
   </md-card-content>
   <md-card-actions class="actions" align="center">
-    <button md-raised-button>
+    <button md-raised-button (click)="registerPoint('dishwasher')">
       Maskinen!
     </button>
     <span class="spacer"></span>
-    <button md-raised-button>
+    <button md-raised-button (click)="registerPoint('trash')">
       Søppelet!
     </button>
   </md-card-actions>

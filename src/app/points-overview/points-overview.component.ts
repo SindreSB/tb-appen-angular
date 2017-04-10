@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HighscoreResult } from '../shared/models';
+import { IHighscoreResult } from '../shared/models';
+import { ApiService } from '../services/api.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'tb-points-overview',
@@ -8,11 +10,17 @@ import { HighscoreResult } from '../shared/models';
 })
 export class PointsOverviewComponent implements OnInit {
 
-  highscore: HighscoreResult[];
+  points: Observable<number>;
+  highscore: IHighscoreResult[];
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    this.points = this.apiService.getPointsForUser();
+  }
+
+  registerPoint(event) {
+    this.apiService.postPointForUser(event);
   }
 
 }

@@ -51,12 +51,8 @@ export class AuthService {
 
   public logout() {
     // Remove token from localStorage
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('name');
-    localStorage.removeItem('picture');
-    localStorage.removeItem('roles');
+    localStorage.clear();
     this.router.navigateByUrl('/login');
-    location.reload(true);
   }
 
   public isAdmin(): boolean {
@@ -69,5 +65,22 @@ export class AuthService {
 
   public hasRole(role: string): boolean {
     return localStorage.getItem('roles').includes(role);
+  }
+
+  public isRoomnumberSet(): boolean {
+    return localStorage.getItem('roomnumber') !== null;
+  }
+
+  public getRoomnumber(): number {
+    if ( !this.isRoomnumberSet()) { return null; }
+    return Number.parseInt(localStorage.getItem('roomnumber'));
+  }
+
+  public getName(): string {
+    return localStorage.getItem('name');
+  }
+
+  public setRoomnumber(roomnumber: number): void {
+    localStorage.setItem('roomnumber', roomnumber.toString());
   }
 }

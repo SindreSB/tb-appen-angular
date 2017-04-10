@@ -1,5 +1,5 @@
 
-export interface Rental {
+export interface IRental {
     rentalId?: number;
     userId?: string;
     roomNumber?: number;
@@ -7,51 +7,51 @@ export interface Rental {
     movedOut?: Date;
 }
 
-export interface PostRental {
+export interface IPostRental {
     roomNumber: number;
     movedIn: Date;
 }
 
-export interface RentalResponse {
-    rental: Rental;
+export interface IRentalResponse {
+    rental: IRental;
 }
 
-export interface HighscoreResult {
-    highscore: HighscoreEntry[];
+export interface IHighscoreResult {
+    highscore: IHighscoreEntry[];
 }
 
-export interface HighscoreEntry {
+export interface IHighscoreEntry {
     roomNumber: number;
     points: number;
 }
 
-export interface PointsThisWeekResponse {
+export interface IPointsThisWeekResponse {
     points: number;
 }
 
-export interface PostPoint {
+export interface IPostPoint {
     date: Date;
     action: string;
 }
 
-export interface Room {
+export interface IRoom {
     roomNumber: number;
 }
 
 export interface IGenerateWashlistParams {
     startDate: Date;
     endDate: Date;
-    beginWithRoom: Room;
-    prioritizeRooms: Room[];
-    skipRooms: Room[];
+    beginWithRoom: IRoom;
+    prioritizeRooms: IRoom[];
+    skipRooms: IRoom[];
 }
 
 export class GenerateWashlistParams {
     startDate: Date;
     endDate: Date;
-    beginWithRoom: Room;
-    prioritizeRooms: Room[];
-    skipRooms: Room[];
+    beginWithRoom: IRoom;
+    prioritizeRooms: IRoom[];
+    skipRooms: IRoom[];
 
     constructor() { }
 }
@@ -68,11 +68,11 @@ export class WashdayAssignment {
     constructor() {}
 }
 
-export interface WashlistResponse {
+export interface IWashlistResponse {
     washdayassignments: WashdayAssignment[];
 }
 
-export interface KitchenPoint {
+export interface IKitchenPoint {
     kitchenPointId?: number;
     date?: Date;
     roomNumber?: number;
