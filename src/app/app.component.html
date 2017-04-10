@@ -33,7 +33,7 @@
           <a md-list-item routerLink="/profile" (click)="sidenav.toggle()">
             <img [src]="auth.getImage()" alt="Profile image" class="img-circle">
             <span class="spacer"></span>
-            <p class="nav-label">{{auth.getName().split(' ')[0]}}</p>
+            <p *ngIf="auth.authenticated()" class="nav-label">{{auth.getName().split(' ')[0]}}</p>
           </a>
           <!--<a md-list-item routerLink="/settings" (click)="sidenav.toggle()">
             <md-icon>settings</md-icon>

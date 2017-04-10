@@ -10,6 +10,7 @@ import {
     IPostPoint,
     IHighscoreEntry
 } from '../shared/models';
+import { CleaningList } from '../shared/washlist/cleaning-list';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { API_ENDPOINT } from '../settings';
@@ -32,6 +33,18 @@ export class ApiService {
         return this.authHttp.post(API_ENDPOINT + apiEndpoint, JSON.stringify(params))
             .map(data => <WashdayAssignment[]>data.json());
     }
+
+    public getCleaninglist(): Observable<CleaningList> {
+        const apiEndpoint = 'WashdayAssignments';
+        return this.authHttp.get(API_ENDPOINT + apiEndpoint)
+                            .map(response => {console.log(response); return response.json();})
+                            .map<WashdayAssignment[], CleaningList>(response => {console.log(response); return new CleaningList(response);});
+    }
+
+    public saveWashlist(washlist: WashdayAssignment[]): void {
+        console.log('Tried to save: ' + JSON.stringify(washlist));
+    }
+
 
 
     /* ####################################################################################

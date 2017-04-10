@@ -1,1 +1,1 @@
-<tb-washlist-display></tb-washlist-display>
+<tb-washlist-display *ngIf="cleaningList" [cleaningList]="cleaningList | async" ></tb-washlist-display>
