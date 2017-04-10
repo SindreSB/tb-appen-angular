@@ -9,18 +9,21 @@ import { GenerateWashlistParams } from '../shared/models';
 })
 export class WashlistInputComponent implements OnInit {
 
-  @Input() value: GenerateWashlistParams;
+  @Input() paramValue: GenerateWashlistParams;
+  @Input() showSaveButton: boolean;
   @Output() onGenerate = new EventEmitter<GenerateWashlistParams>();
+  @Output() saveClicked = new EventEmitter();
 
   showAdvanced = false;
-
+  prioritizeRoom = '';
+  skipRooms = '';
 
   constructor() {
-    if (this.value === null || this.value === undefined) {
-      this.value = new GenerateWashlistParams();
-      this.value.startDate = new Date();
-      this.value.endDate = new Date();
-      this.value.beginWithRoom = {roomNumber: 201};
+    if (this.paramValue === null || this.paramValue === undefined) {
+      this.paramValue = new GenerateWashlistParams();
+      this.paramValue.startDate = new Date();
+      this.paramValue.endDate = new Date();
+      this.paramValue.beginWithRoom = {roomNumber: 201};
 
     }
   }
@@ -36,19 +39,50 @@ export class WashlistInputComponent implements OnInit {
     // Gather up the values and...
     // console.log(this.value);
     // Emit!
-    this.onGenerate.emit(this.value);
+    //this.value.prioritizeRooms = this.prioritizeRooms.split(' ,').map(room => { return {'roomNumber': Number.parseInt(room)}; });
+    //this.value.skipRooms = this.skipRooms.split(' ,').map(room => { return {'roomNumber': Number.parseInt(room)}; });
+    console.log(this.paramValue);
+    this.onGenerate.emit(this.paramValue);
+  }
+
+  onSaveClicked() {
+    this.saveClicked.emit();
   }
 
   updateStartdate(event) {
-    this.value.startDate = new Date(event);
+    this.paramValue.startDate = new Date(event);
   }
 
   updateEnddate(event) {
-    this.value.endDate = new Date(event);
+    this.paramValue.endDate = new Date(event);
   }
 
   updateRoomnumber(event) {
-    this.value.beginWithRoom = {roomNumber: event};
+    this.paramValue.beginWithRoom = {roomNumber: event};
+  }
+
+  updatePrioritizedRooms(event: KeyboardEvent, sender) {
+    if (event.key === ' ' || event.key === ',') {
+      const numberString = sender.value.slice(0, 3);
+      sender.value = null;
+      const roomnumber = Number.parseInt(numberString);
+      if (roomnumber !== NaN) {
+        this.paramValue.prioritizeRooms.push({'roomNumber': roomnumber});
+      }
+      this.prioritizeRoom = ' ';
+      this.prioritizeRoom = '';
+    }
+  }
+
+  updateSkippedRooms(event: KeyboardEvent, sender) {
+    if (event.key === ' ' || event.key === ',') {
+      const numberString = sender.value.slice(0, 3);
+      sender.value = null;
+      const roomnumber = Number.parseInt(numberString);
+      if (roomnumber !== NaN) {
+        this.paramValue.skipRooms.push({'roomNumber': roomnumber});
+      }
+    }
   }
 
 }

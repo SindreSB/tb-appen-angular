@@ -5,3 +5,7 @@
 md-card-header {
      text-align: center;
  }
+
+.generate-button {
+    margin-top: 10px;
+}

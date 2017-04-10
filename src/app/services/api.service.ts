@@ -42,7 +42,14 @@ export class ApiService {
     }
 
     public saveWashlist(washlist: WashdayAssignment[]): void {
-        console.log('Tried to save: ' + JSON.stringify(washlist));
+        const apiEndpoint = 'WashdayAssignments';
+        washlist.forEach(assignment => {
+            this.authHttp.post(API_ENDPOINT + apiEndpoint, JSON.stringify(assignment)).subscribe(success => {
+                console.log('Saved washday');
+            }, error => {
+                console.log('Error: ' + error);
+            });
+        });
     }
 
 

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { WashdayAssignment } from '../shared/models';
 import { CleaningList } from '../shared/washlist/cleaning-list';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 @Component({
   selector: 'tb-washlist-generator',
@@ -11,7 +12,7 @@ import { Observable } from 'rxjs/observable';
 })
 export class WashlistGeneratorComponent implements OnInit {
 
-  asyncCleaningList: Observable<CleaningList>;
+  asyncCleaningList: ReplaySubject<CleaningList> = new ReplaySubject(1);
 
   washlist: WashdayAssignment[];
 
@@ -21,6 +22,14 @@ export class WashlistGeneratorComponent implements OnInit {
   }
 
   generateWashlist(params) {
-    this.asyncCleaningList = this.apiService.generateWashlist(params).map(value => new CleaningList(value));
+    this.apiService.generateWashlist(params).map(value => new CleaningList(value)).subscribe(success => {
+      this.asyncCleaningList.next(success);
+      this.washlist = success.getWashdayAssignments();
+      console.log(this.washlist);
+    });
+  }
+
+  saveWashlist() {
+    this.apiService.saveWashlist(this.washlist);
   }
 }

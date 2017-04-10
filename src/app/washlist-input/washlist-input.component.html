@@ -5,13 +5,13 @@
   <md-card-content align="center">
     <div #dateRow>
       <md-input-container #fromDateContainer>
-        <input mdInput [ngModel]="value.startDate | date:'yyyy-MM-dd'" (ngModelChange)="updateStartdate($event)" type="date" placeholder="Fra dato:">
+        <input mdInput [ngModel]="paramValue.startDate | date:'yyyy-MM-dd'" (ngModelChange)="updateStartdate($event)" type="date" placeholder="Fra dato:">
       </md-input-container>
       <md-input-container #toDateContainer>
-        <input mdInput [ngModel]="value.endDate | date:'yyyy-MM-dd'" (ngModelChange)="updateEnddate($event)" type="date" placeholder="Til dato:">
+        <input mdInput [ngModel]="paramValue.endDate | date:'yyyy-MM-dd'" (ngModelChange)="updateEnddate($event)" type="date" placeholder="Til dato:">
       </md-input-container>
       <md-input-container>
-        <input mdInput [ngModel]="value.beginWithRoom.roomNumber" (ngModelChange)="updateRoomnumber($event)" type="number" placeholder="Begyn med rom:">
+        <input mdInput [ngModel]="paramValue.beginWithRoom.roomNumber" (ngModelChange)="updateRoomnumber($event)" type="number" placeholder="Begyn med rom:">
       </md-input-container>
     </div>
     <div>
@@ -19,13 +19,21 @@
     </div>
     <div *ngIf="showAdvanced">
       <md-input-container>
-      <input mdInput type="text" placeholder="Straffevasker:" value="">
+      <input mdInput #prioritizeRoomInput  type="text" placeholder="Straffevasker:" [value]='prioritizeRoom' (keyup)="updatePrioritizedRooms($event, prioritizeRoomInput)">
     </md-input-container>
-    <md-input-container>
-      <input mdInput type="text" placeholder="Fritak for vask:" value="">
-    </md-input-container>
+    <div>
+      <span *ngFor="let room of paramValue.prioritizeRooms"> {{ room.roomNumber }} </span>
     </div>
-    <button md-raised-button (click)="onGenerateClicked()">Generer</button>
+    <md-input-container>
+      <input mdInput #skipRoomInput type="text" placeholder="Fritak for vask:" [value]="skipRooms" (keyup)="updateSkippedRooms($event, skipRoomInput)">
+    </md-input-container>
+    <div>
+      <span *ngFor="let room of paramValue.skipRooms"> {{ room.roomNumber }} </span>
+    </div>
+    
+    </div>
+    <button class="generate-button" *ngIf="showSaveButton" md-raised-button (click)="onSaveClicked()">Lagre</button>
+    <button class="generate-button" md-raised-button (click)="onGenerateClicked()">Generer</button>
     
   </md-card-content>
 </md-card>

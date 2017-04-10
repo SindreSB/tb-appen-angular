@@ -38,6 +38,12 @@ export class CleaningList {
         return this.weekLists;
     }
 
+    getWashdayAssignments(): WashdayAssignment[] {
+        return this.getCleaningLists()
+                .map(list => list.getWashdayAssignments())
+                .reduce((previous, next) => previous.concat(next), []);
+    }
+
     hasListForDate(date: Date) {
         date = new Date(date);
         // console.log('---------------------------');

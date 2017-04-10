@@ -53,6 +53,7 @@ export class AuthService {
     // Remove token from localStorage
     localStorage.clear();
     this.router.navigateByUrl('/login');
+    location.reload(true);
   }
 
   public isAdmin(): boolean {
@@ -64,7 +65,10 @@ export class AuthService {
   }
 
   public hasRole(role: string): boolean {
-    return localStorage.getItem('roles').includes(role);
+    if (localStorage.getItem('roles')) {
+      return localStorage.getItem('roles').includes(role);
+    }
+    return false;
   }
 
   public isRoomnumberSet(): boolean {

@@ -50,8 +50,8 @@ export class GenerateWashlistParams {
     startDate: Date;
     endDate: Date;
     beginWithRoom: IRoom;
-    prioritizeRooms: IRoom[];
-    skipRooms: IRoom[];
+    prioritizeRooms: IRoom[] = [];
+    skipRooms: IRoom[] = [];
 
     constructor() { }
 }

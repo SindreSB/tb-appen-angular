@@ -18,7 +18,7 @@
           <span class="spacer"></span>
           <p class="nav-label">Vaskeliste</p>
         </a>
-        <a md-list-item routerLink="/washlist/generate" (click)="sidenav.toggle()">
+        <a md-list-item *ngIf="auth.isBbu()" routerLink="/washlist/generate" (click)="sidenav.toggle()">
           <md-icon>create</md-icon>
           <span class="spacer"></span>
           <p class="nav-label">Lag vaskeliste (BBU)</p>
@@ -30,7 +30,7 @@
         </a>-->
         <div class="profile-section">
           <md-divider></md-divider>
-          <a md-list-item routerLink="/profile" (click)="sidenav.toggle()">
+          <a md-list-item (click)="sidenav.toggle()">
             <img [src]="auth.getImage()" alt="Profile image" class="img-circle">
             <span class="spacer"></span>
             <p *ngIf="auth.authenticated()" class="nav-label">{{auth.getName().split(' ')[0]}}</p>

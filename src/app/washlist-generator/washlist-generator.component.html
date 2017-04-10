@@ -1,2 +1,2 @@
-<tb-washlist-input (onGenerate)="generateWashlist($event)"></tb-washlist-input>
+<tb-washlist-input [showSaveButton]="washlist" (onGenerate)="generateWashlist($event)" (saveClicked)="saveWashlist()"></tb-washlist-input>
 <tb-washlist-display *ngIf="asyncCleaningList" [cleaningList]="asyncCleaningList | async"></tb-washlist-display>

@@ -61,6 +61,10 @@ export class CleaningWeek extends Week {
         return assignmentList;
     }
 
+    public getWashdayAssignments(): WashdayAssignment[] {
+        return this.cleaningAssignments;
+    }
+
     private sortAssignments() {
         this.cleaningAssignments = this.cleaningAssignments.sort((a, b) => {
             const aBeforeb = (new Date(a.date)).getDay() <= (new Date(b.date)).getDay();
